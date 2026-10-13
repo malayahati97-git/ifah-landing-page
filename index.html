@@ -1,152 +1,329 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f8fafc">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ifah.my.id — Home Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-elevated: #F7F7F7;
+    --surface: #FFFFFF;
+    --surface-hover: #F2FAFA;
+    --border: #E0E0E0;
+    --text: #1A1A1A;
+    --text-muted: #5C6568;
+    --text-faint: #8A9194;
+    --accent: #008080;
+    --accent-soft: rgba(0, 128, 128, 0.10);
+    --rack: #E0E0E0;
+    --radius: 10px;
+  }
 
-  <title>ifah.my.id — Temukan Sesuatu yang Tepat</title>
-  <meta name="description" content="Temukan informasi, rekomendasi, dan penawaran menarik di ifah.my.id.">
+  * { box-sizing: border-box; }
 
-  <style>
-    * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #172033;
-      background: #f8fafc;
-      line-height: 1.6;
-    }
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
 
-    .container {
-      width: min(1080px, 90%);
-      margin: auto;
-    }
+  body {
+    font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    -webkit-font-smoothing: antialiased;
+  }
 
-    header {
-      padding: 24px 0;
-      font-size: 21px;
-      font-weight: 700;
-    }
+  .mono {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  }
 
-    .hero {
-      min-height: 70vh;
-      display: flex;
-      align-items: center;
-      padding: 64px 0;
-    }
+  .wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 56px 24px 72px;
+  }
 
-    .content { max-width: 680px; }
+  header.top {
+    margin-bottom: 48px;
+  }
 
-    .tag {
-      color: #087f5b;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+  .rack-mark {
+    display: inline-flex;
+    gap: 3px;
+    margin-bottom: 20px;
+  }
+  .rack-mark span {
+    width: 7px;
+    height: 20px;
+    background: var(--rack);
+    border-radius: 2px;
+  }
+  .rack-mark span:nth-child(2) { background: var(--accent); }
 
-    h1 {
-      margin: 18px 0;
-      font-size: clamp(38px, 7vw, 64px);
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-    }
+  h1 {
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.1;
+    margin: 0 0 12px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
 
-    .description {
-      color: #64748b;
-      font-size: 18px;
-      max-width: 550px;
-    }
+  header.top p {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 52ch;
+    line-height: 1.55;
+    margin: 0;
+  }
 
-    .cta {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 14px 24px;
-      border-radius: 9px;
-      background: #087f5b;
-      color: white;
-      text-decoration: none;
-      font-weight: 700;
-    }
+  .host {
+    color: var(--accent);
+  }
 
-    .cta:hover { background: #066849; }
+  section.group {
+    margin-top: 40px;
+  }
 
-    .features { padding: 40px 0 80px; }
+  .group-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+  .group-title h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text);
+  }
 
-    .feature {
-      padding: 24px;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      background: white;
-    }
+  .group-title .count {
+    font-size: 12px;
+    color: var(--text-faint);
+  }
 
-    .feature p { color: #64748b; }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 10px;
+  }
 
-    footer {
-      padding: 24px 0;
-      border-top: 1px solid #e2e8f0;
-      color: #64748b;
-      font-size: 14px;
-    }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
 
-    @media (max-width: 640px) {
-      .feature-grid { grid-template-columns: 1fr; }
-      .hero { min-height: 60vh; }
-    }
-  </style>
+  .card:hover {
+    background: var(--surface-hover);
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 128, 128, 0.10);
+  }
+
+  .card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .card-name {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .card-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .card-url {
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 12.5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 520px) {
+    .wrap { padding: 36px 18px 48px; }
+    .cards { grid-template-columns: 1fr 1fr; }
+  }
+</style>
 </head>
 <body>
-  <header class="container">ifah.my.id</header>
+<div class="wrap">
 
-  <main>
-    <section class="hero">
-      <div class="container content">
-        <div class="tag">SELAMAT DATANG</div>
-        <h1>Temukan sesuatu yang tepat untukmu.</h1>
-        <p class="description">
-          Informasi, rekomendasi, dan penawaran pilihan
-          yang dirancang untuk kebutuhanmu.
-        </p>
-        <!-- <a class="cta" href="#informasi">Jelajahi Sekarang</a> -->
-      </div>
-    </section>
+  <header class="top">
+    <div class="rack-mark"><span></span><span></span><span></span></div>
+    <h1>Home Lab Dashboard</h1>
+    <p>Daftar layanan yang berjalan di server pribadi, di bawah domain <span class="host mono">ifah.my.id</span>. Ganti nama subdomain pada tiap kartu sesuai konfigurasi reverse proxy kamu sendiri.</p>
+  </header>
 
-    <!-- <section class="features container" id="informasi">
-      <h2>Temukan lebih banyak</h2>
-      <div class="feature-grid">
-        <article class="feature">
-          <h3>Informasi</h3>
-          <p>Temukan informasi yang relevan dengan kebutuhanmu.</p>
-        </article>
-        <article class="feature">
-          <h3>Penawaran</h3>
-          <p>Jelajahi penawaran dan promo yang tersedia.</p>
-        </article>
-        <article class="feature">
-          <h3>Hubungi Kami</h3>
-          <p>Dapatkan informasi lebih lanjut tentang layanan kami.</p>
-        </article>
-      </div>
-    </section> -->
-  </main>
+  <section class="group">
+    <div class="group-title">
+      <h2>Infrastruktur &amp; Virtualisasi</h2>
+      <span class="count mono">3</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://proxmox.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Proxmox VE</span><span class="card-icon">◧</span></div>
+        <p class="card-desc">Hypervisor untuk VM &amp; container</p>
+        <span class="card-url mono">proxmox.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://portainer.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Portainer</span><span class="card-icon">▣</span></div>
+        <p class="card-desc">Manajemen container Docker</p>
+        <span class="card-url mono">portainer.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://npm.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Nginx Proxy Manager</span><span class="card-icon">⇄</span></div>
+        <p class="card-desc">Reverse proxy &amp; sertifikat SSL</p>
+        <span class="card-url mono">npm.ifah.my.id</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-title">
+      <h2>Media &amp; Hiburan</h2>
+      <span class="count mono">3</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://jellyfin.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Jellyfin</span><span class="card-icon">▶</span></div>
+        <p class="card-desc">Streaming film &amp; series pribadi</p>
+        <span class="card-url mono">jellyfin.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://immich.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Immich</span><span class="card-icon">◍</span></div>
+        <p class="card-desc">Backup &amp; galeri foto otomatis</p>
+        <span class="card-url mono">immich.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://torrent.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">qBittorrent</span><span class="card-icon">⇵</span></div>
+        <p class="card-desc">Klien unduhan torrent</p>
+        <span class="card-url mono">torrent.ifah.my.id</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-title">
+      <h2>Keamanan &amp; Jaringan</h2>
+      <span class="count mono">2</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://pihole.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Pi-hole</span><span class="card-icon">⦿</span></div>
+        <p class="card-desc">Pemblokir iklan &amp; DNS lokal</p>
+        <span class="card-url mono">pihole.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://vault.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Vaultwarden</span><span class="card-icon">🔒</span></div>
+        <p class="card-desc">Manajer kata sandi (Bitwarden-compatible)</p>
+        <span class="card-url mono">vault.ifah.my.id</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-title">
+      <h2>Produktivitas &amp; Otomasi</h2>
+      <span class="count mono">2</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://cloud.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Nextcloud</span><span class="card-icon">☁</span></div>
+        <p class="card-desc">Penyimpanan &amp; sinkronisasi file</p>
+        <span class="card-url mono">cloud.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://ha.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Home Assistant</span><span class="card-icon">⌂</span></div>
+        <p class="card-desc">Otomasi perangkat rumah pintar</p>
+        <span class="card-url mono">ha.ifah.my.id</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="group">
+    <div class="group-title">
+      <h2>Monitoring</h2>
+      <span class="count mono">2</span>
+    </div>
+    <div class="cards">
+      <a class="card" href="https://status.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Uptime Kuma</span><span class="card-icon">◉</span></div>
+        <p class="card-desc">Pemantauan uptime layanan</p>
+        <span class="card-url mono">status.ifah.my.id</span>
+      </a>
+      <a class="card" href="https://grafana.ifah.my.id" target="_blank" rel="noopener">
+        <div class="card-top"><span class="card-name">Grafana</span><span class="card-icon">📈</span></div>
+        <p class="card-desc">Dashboard metrik &amp; log server</p>
+        <span class="card-url mono">grafana.ifah.my.id</span>
+      </a>
+    </div>
+  </section>
 
   <footer>
-    <div class="container">
-      &copy; <span id="year"></span> ifah.my.id
-    </div>
+    <span>12 layanan terdaftar</span>
+    <span class="mono">ifah.my.id</span>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+</div>
 </body>
 </html>
