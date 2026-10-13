@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+
+  <title>ifah.my.id — Temukan Sesuatu yang Tepat</title>
+  <meta name="description" content="Temukan informasi, rekomendasi, dan penawaran menarik di ifah.my.id.">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #172033;
+      background: #f8fafc;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1080px, 90%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      padding: 64px 0;
+    }
+
+    .content { max-width: 680px; }
+
+    .tag {
+      color: #087f5b;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 18px 0;
+      font-size: clamp(38px, 7vw, 64px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .description {
+      color: #64748b;
+      font-size: 18px;
+      max-width: 550px;
+    }
+
+    .cta {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 14px 24px;
+      border-radius: 9px;
+      background: #087f5b;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .cta:hover { background: #066849; }
+
+    .features { padding: 40px 0 80px; }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: white;
+    }
+
+    .feature p { color: #64748b; }
+
+    footer {
+      padding: 24px 0;
+      border-top: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .hero { min-height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+  <header class="container">ifah.my.id</header>
+
+  <main>
+    <section class="hero">
+      <div class="container content">
+        <div class="tag">SELAMAT DATANG</div>
+        <h1>Temukan sesuatu yang tepat untukmu.</h1>
+        <p class="description">
+          Informasi, rekomendasi, dan penawaran pilihan
+          yang dirancang untuk kebutuhanmu.
+        </p>
+        <a class="cta" href="#informasi">Jelajahi Sekarang</a>
+      </div>
+    </section>
+
+    <section class="features container" id="informasi">
+      <h2>Temukan lebih banyak</h2>
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>Informasi</h3>
+          <p>Temukan informasi yang relevan dengan kebutuhanmu.</p>
+        </article>
+        <article class="feature">
+          <h3>Penawaran</h3>
+          <p>Jelajahi penawaran dan promo yang tersedia.</p>
+        </article>
+        <article class="feature">
+          <h3>Hubungi Kami</h3>
+          <p>Dapatkan informasi lebih lanjut tentang layanan kami.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; <span id="year"></span> ifah.my.id
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
